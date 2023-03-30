@@ -1,0 +1,18 @@
+services:
+  backend:
+    container_name: backend
+    build:
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    volumes:
+      - ./database:/data/db
+    ports:
+      - 27018:27017
+    restart: always
